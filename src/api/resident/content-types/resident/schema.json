@@ -1,23 +1,23 @@
 {
   "kind": "collectionType",
-  "collectionName": "events",
+  "collectionName": "residents",
   "info": {
-    "singularName": "event",
-    "pluralName": "events",
-    "displayName": "Event"
+    "singularName": "resident",
+    "pluralName": "residents",
+    "displayName": "Resident"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "Title": {
+    "Name": {
       "type": "string"
     },
-    "Date": {
-      "type": "datetime"
+    "Description": {
+      "type": "text"
     },
-    "Thumbnail": {
+    "Image": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
@@ -27,17 +27,13 @@
         "audios"
       ]
     },
-    "Recurring": {
-      "type": "boolean"
+    "ContactEmail": {
+      "type": "email"
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "Title"
+    "ContactPhone": {
+      "type": "string"
     },
-    "Description": {
-      "type": "text"
-    },
-    "Location": {
+    "ContactName": {
       "type": "string"
     }
   }

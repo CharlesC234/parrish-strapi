@@ -1,23 +1,23 @@
 {
   "kind": "collectionType",
-  "collectionName": "events",
+  "collectionName": "departments",
   "info": {
-    "singularName": "event",
-    "pluralName": "events",
-    "displayName": "Event"
+    "singularName": "department",
+    "pluralName": "departments",
+    "displayName": "Department"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "Title": {
+    "Name": {
       "type": "string"
     },
-    "Date": {
-      "type": "datetime"
+    "Description": {
+      "type": "text"
     },
-    "Thumbnail": {
+    "Image": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
@@ -27,17 +27,16 @@
         "audios"
       ]
     },
-    "Recurring": {
+    "Email": {
+      "type": "email"
+    },
+    "Phone": {
+      "type": "string"
+    },
+    "External": {
       "type": "boolean"
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "Title"
-    },
-    "Description": {
-      "type": "text"
-    },
-    "Location": {
+    "ExternalLink": {
       "type": "string"
     }
   }

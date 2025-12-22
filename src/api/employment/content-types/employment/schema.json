@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "events",
+  "collectionName": "employments",
   "info": {
-    "singularName": "event",
-    "pluralName": "events",
-    "displayName": "Event"
+    "singularName": "employment",
+    "pluralName": "employments",
+    "displayName": "Employment"
   },
   "options": {
     "draftAndPublish": true
@@ -14,12 +14,12 @@
     "Title": {
       "type": "string"
     },
-    "Date": {
-      "type": "datetime"
+    "Description": {
+      "type": "text"
     },
-    "Thumbnail": {
+    "Files": {
       "type": "media",
-      "multiple": false,
+      "multiple": true,
       "allowedTypes": [
         "images",
         "files",
@@ -27,17 +27,16 @@
         "audios"
       ]
     },
-    "Recurring": {
-      "type": "boolean"
+    "ContactEmail": {
+      "type": "email"
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "Title"
+    "ContactPhone": {
+      "type": "string"
     },
-    "Description": {
-      "type": "text"
+    "ApplicationLink": {
+      "type": "string"
     },
-    "Location": {
+    "ContactName": {
       "type": "string"
     }
   }

@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "parrish_moments",
+  "info": {
+    "singularName": "parrish-moment",
+    "pluralName": "parrish-moments",
+    "displayName": "Parrish Moment"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Images": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}
