@@ -430,6 +430,34 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAlertAlert extends Struct.CollectionTypeSchema {
+  collectionName: 'alerts';
+  info: {
+    displayName: 'Alert';
+    pluralName: 'alerts';
+    singularName: 'alert';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Color: Schema.Attribute.Enumeration<['green', 'blue', 'yellow', 'red']>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Date: Schema.Attribute.DateTime;
+    Description: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::alert.alert'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiArticalArtical extends Struct.CollectionTypeSchema {
   collectionName: 'articals';
   info: {
@@ -1305,6 +1333,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::alert.alert': ApiAlertAlert;
       'api::artical.artical': ApiArticalArtical;
       'api::department.department': ApiDepartmentDepartment;
       'api::directory.directory': ApiDirectoryDirectory;
