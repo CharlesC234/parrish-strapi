@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "incentives",
+  "info": {
+    "singularName": "incentive",
+    "pluralName": "incentives",
+    "displayName": "Incentive"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "text"
+    }
+  }
+}

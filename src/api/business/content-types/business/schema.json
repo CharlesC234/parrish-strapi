@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "businesses",
+  "info": {
+    "singularName": "business",
+    "pluralName": "businesses",
+    "displayName": "Business"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Category": {
+      "type": "enumeration",
+      "enum": [
+        "business",
+        "church",
+        "organization"
+      ]
+    },
+    "Description": {
+      "type": "text"
+    },
+    "Address": {
+      "type": "string"
+    },
+    "Phone": {
+      "type": "string"
+    },
+    "Hours": {
+      "type": "string"
+    },
+    "Website": {
+      "type": "string"
+    }
+  }
+}

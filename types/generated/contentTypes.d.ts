@@ -493,29 +493,30 @@ export interface ApiArticalArtical extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiDepartmentDepartment extends Struct.CollectionTypeSchema {
-  collectionName: 'departments';
+export interface ApiBusinessBusiness extends Struct.CollectionTypeSchema {
+  collectionName: 'businesses';
   info: {
-    displayName: 'Department';
-    pluralName: 'departments';
-    singularName: 'department';
+    displayName: 'Business';
+    pluralName: 'businesses';
+    singularName: 'business';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
+    Address: Schema.Attribute.String;
+    Category: Schema.Attribute.Enumeration<
+      ['business', 'church', 'organization']
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     Description: Schema.Attribute.Text;
-    Email: Schema.Attribute.Email;
-    External: Schema.Attribute.Boolean;
-    ExternalLink: Schema.Attribute.String;
-    Image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    Hours: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::department.department'
+      'api::business.business'
     > &
       Schema.Attribute.Private;
     Name: Schema.Attribute.String;
@@ -524,6 +525,7 @@ export interface ApiDepartmentDepartment extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    Website: Schema.Attribute.String;
   };
 }
 
@@ -659,6 +661,35 @@ export interface ApiFormForm extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiIncentiveIncentive extends Struct.CollectionTypeSchema {
+  collectionName: 'incentives';
+  info: {
+    displayName: 'Incentive';
+    pluralName: 'incentives';
+    singularName: 'incentive';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Description: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::incentive.incentive'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiMeetingMeeting extends Struct.CollectionTypeSchema {
   collectionName: 'meetings';
   info: {
@@ -689,6 +720,38 @@ export interface ApiMeetingMeeting extends Struct.CollectionTypeSchema {
       'images' | 'files' | 'videos' | 'audios',
       true
     >;
+    Name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMunicipalBoardMunicipalBoard
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'municipal_boards';
+  info: {
+    displayName: 'Municipal Board';
+    pluralName: 'municipal-boards';
+    singularName: 'municipal-board';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Description: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::municipal-board.municipal-board'
+    > &
+      Schema.Attribute.Private;
+    MeetingSchedule: Schema.Attribute.String;
+    Members: Schema.Attribute.JSON;
     Name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
@@ -732,7 +795,7 @@ export interface ApiParrishMomentParrishMoment
 export interface ApiPeoplePeople extends Struct.CollectionTypeSchema {
   collectionName: 'peoples';
   info: {
-    displayName: 'People';
+    displayName: 'Council Member';
     pluralName: 'peoples';
     singularName: 'people';
   };
@@ -752,6 +815,7 @@ export interface ApiPeoplePeople extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     Name: Schema.Attribute.String;
+    Position: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     Slug: Schema.Attribute.UID<'Name'>;
     Thumbnail: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
@@ -761,45 +825,81 @@ export interface ApiPeoplePeople extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiResidentResident extends Struct.CollectionTypeSchema {
-  collectionName: 'residents';
+export interface ApiProjectUpdateProjectUpdate
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'project_updates';
   info: {
-    displayName: 'Resident';
-    pluralName: 'residents';
-    singularName: 'resident';
+    displayName: 'Project';
+    pluralName: 'project-updates';
+    singularName: 'project-update';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    ContactEmail: Schema.Attribute.Email;
-    ContactName: Schema.Attribute.String;
-    ContactPhone: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     Description: Schema.Attribute.Text;
-    Image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::resident.resident'
+      'api::project-update.project-update'
     > &
       Schema.Attribute.Private;
     Name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    StartDate: Schema.Attribute.Date;
+    Status: Schema.Attribute.Enumeration<['active', 'completed', 'planned']>;
+    timeline_entries: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::timeline-entry.timeline-entry'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
   };
 }
 
-export interface ApiSocialLinkSocialLink extends Struct.CollectionTypeSchema {
-  collectionName: 'social_links';
+export interface ApiPropertyProperty extends Struct.CollectionTypeSchema {
+  collectionName: 'properties';
   info: {
-    displayName: 'Social Link';
-    pluralName: 'social-links';
-    singularName: 'social-link';
+    displayName: 'Property';
+    pluralName: 'properties';
+    singularName: 'property';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Address: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Description: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::property.property'
+    > &
+      Schema.Attribute.Private;
+    Name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    Size: Schema.Attribute.String;
+    Status: Schema.Attribute.String;
+    Type: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiStaffStaff extends Struct.CollectionTypeSchema {
+  collectionName: 'staffs';
+  info: {
+    displayName: 'Staff';
+    pluralName: 'staffs';
+    singularName: 'staff';
   };
   options: {
     draftAndPublish: true;
@@ -808,14 +908,47 @@ export interface ApiSocialLinkSocialLink extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    Link: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::staff.staff'> &
+      Schema.Attribute.Private;
+    Name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    Role: Schema.Attribute.String;
+    Thumbnail: Schema.Attribute.Media<'images'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTimelineEntryTimelineEntry
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'timeline_entries';
+  info: {
+    displayName: 'Project Update';
+    pluralName: 'timeline-entries';
+    singularName: 'timeline-entry';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Date: Schema.Attribute.Date;
+    Description: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::social-link.social-link'
+      'api::timeline-entry.timeline-entry'
     > &
       Schema.Attribute.Private;
-    Name: Schema.Attribute.String;
+    Media: Schema.Attribute.Media<'images' | 'files' | 'videos', true>;
+    project_update: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::project-update.project-update'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1335,16 +1468,20 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::alert.alert': ApiAlertAlert;
       'api::artical.artical': ApiArticalArtical;
-      'api::department.department': ApiDepartmentDepartment;
+      'api::business.business': ApiBusinessBusiness;
       'api::directory.directory': ApiDirectoryDirectory;
       'api::employment.employment': ApiEmploymentEmployment;
       'api::event.event': ApiEventEvent;
       'api::form.form': ApiFormForm;
+      'api::incentive.incentive': ApiIncentiveIncentive;
       'api::meeting.meeting': ApiMeetingMeeting;
+      'api::municipal-board.municipal-board': ApiMunicipalBoardMunicipalBoard;
       'api::parrish-moment.parrish-moment': ApiParrishMomentParrishMoment;
       'api::people.people': ApiPeoplePeople;
-      'api::resident.resident': ApiResidentResident;
-      'api::social-link.social-link': ApiSocialLinkSocialLink;
+      'api::project-update.project-update': ApiProjectUpdateProjectUpdate;
+      'api::property.property': ApiPropertyProperty;
+      'api::staff.staff': ApiStaffStaff;
+      'api::timeline-entry.timeline-entry': ApiTimelineEntryTimelineEntry;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
